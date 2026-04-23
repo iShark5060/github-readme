@@ -39,7 +39,7 @@ PALETTES = {
 }
 
 CELL = 12
-ANGLE_DEG = 22
+ANGLE_DEG = 18
 GAP = 2
 SHADE_LEFT = 0.88
 SHADE_RIGHT = 0.74
@@ -244,16 +244,17 @@ def render_bottom_left_stats(x: float, y: float, palette_name: str, stats: Stats
 
     chart_x = x
     label_y = y
-    chart_y = y - 14
-    chart_height = 34
-    bar_width = 9
+    chart_y = y - 16
+    chart_height = 40
+    bar_width = 10
     bar_gap = 3
+    tagline_y = label_y + 16
     max_value = max(stats.day_of_week_totals) or 1
     day_labels = ["S", "M", "T", "W", "T", "F", "S"]
 
     parts.append(
         f'<text x="{chart_x:.2f}" y="{chart_y - chart_height - 5:.2f}" '
-        f'font-family=\'{FONT_STACK}\' font-size="10" fill="{text["secondary"]}" letter-spacing="0.8">'
+        f'font-family=\'{FONT_STACK}\' font-size="11" fill="{text["secondary"]}" letter-spacing="0.8">'
         f"MOST ACTIVE DAYS</text>"
     )
 
@@ -271,6 +272,17 @@ def render_bottom_left_stats(x: float, y: float, palette_name: str, stats: Stats
             f'<text x="{bar_x + bar_width / 2:.2f}" y="{label_y:.2f}" text-anchor="middle" '
             f'font-family=\'{FONT_STACK}\' font-size="10" fill="{text["secondary"]}">{day_labels[idx]}</text>'
         )
+
+    parts.append(
+        f'<text x="{chart_x:.2f}" y="{tagline_y:.2f}" '
+        f'font-family=\'{FONT_STACK}\' font-size="8" fill="{text["secondary"]}" letter-spacing="0.6">'
+        f"DATA PULLED DAILY FROM GITHUB</text>"
+    )
+    parts.append(
+        f'<text x="{chart_x:.2f}" y="{tagline_y + 10:.2f}" '
+        f'font-family=\'{FONT_STACK}\' font-size="8" fill="{text["secondary"]}" letter-spacing="0.6">'
+        f"CONTRIBUTION ACTIVITY</text>"
+    )
 
     return "\n".join(parts)
 
@@ -301,7 +313,7 @@ def render_svg(cells: list[Cell], palette_name: str, stats: Stats, weeks: int) -
     extra_top = 3
     extra_left = 3
     extra_right = 3
-    extra_bottom = 3
+    extra_bottom = 28
 
     min_x = graph_min_x - pad - extra_left
     min_y = graph_min_y - pad - extra_top
