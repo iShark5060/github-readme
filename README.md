@@ -65,13 +65,13 @@ open ./tmp/live-output/contribs-light.svg
 
 ## GitHub Setup
 
-### 1. Create the asset repo
+### 1. Fork this repo
 
-Create a public repo that will hold the generated SVGs. Example:
+Fork this repo into your own GitHub account.
+
+Your fork becomes the public asset repo that stores the generated SVGs. Example:
 
 - `your-username/github-readme`
-
-Push this project into that repo.
 
 ### 2. Add the Actions secret
 
@@ -95,7 +95,7 @@ After that, the workflow also runs every day on this schedule:
 
 - `17 6 * * *` UTC
 
-### 4. Make sure the repo is public
+### 4. Make sure your fork is public
 
 The asset repo must be public, or the raw SVG URLs will return `404`.
 
